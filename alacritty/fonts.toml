@@ -1,0 +1,14 @@
+[font]
+size = 16
+
+[font.bold]
+family = "Fira Code"
+
+[font.bold_italic]
+family = "Fira Code"
+
+[font.italic]
+family = "Fira Code"
+
+[font.normal]
+family = "Fira Code"
