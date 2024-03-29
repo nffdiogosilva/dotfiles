@@ -1,0 +1,4 @@
+.config/cache/*
+.config/local/*
+**/.zcompdump
+**/.zsh_history
