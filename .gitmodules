@@ -10,3 +10,9 @@
 [submodule "zsh/prompt/pure"]
 	path = zsh/prompt/pure
 	url = git@github.com:sindresorhus/pure.git
+[submodule "iterm/catppucin"]
+	path = iterm/catppucin
+	url = git@github.com:catppuccin/iterm.git
+[submodule "iterm/themes/catppucin"]
+	path = iterm/themes/catppucin
+	url = git@github.com:catppuccin/iterm.git
