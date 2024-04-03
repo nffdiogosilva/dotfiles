@@ -20,12 +20,12 @@ source $ZDOTDIR/completion.zsh
 # zsh plugins
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source $ZDOTDIR/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 # autojump
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
 # fzf
 eval "$(fzf --zsh)"
 
 # aliases
 source $ZDOTDIR/aliases
 
+export PATH=$HOME/.local/bin:$PATH
