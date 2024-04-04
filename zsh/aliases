@@ -17,6 +17,9 @@ alias hg='history | grep'
 alias ls='exa --color=always --group-directories-first'
 alias ll='eza -la --color=always --group-directories-first'
 
+# Git
+alias gitclean='git branch --merged| grep -Ev "(^\*|master|main|dev)"'
+
 # vim
 alias vim='nvim'
 
