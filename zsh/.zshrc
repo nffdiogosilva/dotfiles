@@ -1,10 +1,8 @@
-fpath+=($ZDOTDIR/prompt/pure /opt/homebrew/share/zsh/site-functions)
+export PATH=/opt/homebrew/bin:$HOME/.local/bin:$PATH
 
 # prompt
-RPROMPT='[%D{%H:%M:%S}]'
-autoload -U promptinit; promptinit
-prompt pure
-
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
 # zsh options
 setopt AUTO_CD
 setopt HIST_SAVE_NO_DUPS
@@ -20,16 +18,21 @@ source $ZDOTDIR/completion.zsh
 # zsh plugins
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# autojump
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+
 # fzf
 eval "$(fzf --zsh)"
-# pyenv
+
+# python
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# nodejs
+export NVM_DIR="$HOME/.nvm"
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+
 # aliases
 source $ZDOTDIR/aliases
 
-export PATH=$HOME/.local/bin:$PATH
