@@ -1,12 +1,12 @@
-return {
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-  -- Configure LazyVim to load gruvbox
+return {
+  "rose-pine/neovim",
   {
     "LazyVim/LazyVim",
     opts = {
-      -- colorscheme = "catppuccin-frappe",
-      colorscheme = "catppuccin-macchiato",
+      colorscheme = "rose-pine",
     },
   },
 }

@@ -27,13 +27,13 @@ key = "Left"
 mods = "Alt"
 
 [window]
-# decorations = "buttonless"
+decorations = "buttonless"
 # decorations = "full"
-decorations = "Transparent"
+# decorations = "Transparent"
 dynamic_title = true
 # history = 10000
 # multiplier = 3
-opacity = 0.9
+opacity = 0.85
 startup_mode = "Windowed"
 
 [window.dimensions]
@@ -41,5 +41,5 @@ columns = 400
 lines = 200
 
 [window.padding]
-x = 10
-y = 40
+x = 20
+y = 20
