@@ -1,0 +1,66 @@
+[language-server.biome]
+command = "biome"
+args = ["lsp-proxy"]
+
+[language-server.ruff-lsp]
+command = "ruff-lsp"
+
+[language-server.pyright]
+command = "pyright-langserver"
+
+[language-server.gpt]
+command = "deno"
+args = ["run", "--allow-net","--allow-env", "https://raw.githubusercontent.com/sigmaSd/helix-gpt/0.31-deno/src/app.ts"]
+environment = {HANDLER = "copilot"}
+
+[[language]]
+name = "python"
+language-servers = [
+  { name = "ruff-lsp", only-features = [ "format", "diagnostics" ] },
+  { name = "pyright", except-features = [ "format" ] },
+  { name = "gpt"},
+]
+auto-format = true
+rulers = [89]
+
+[[language]]
+name = "javascript"
+language-servers = [
+ { name = "typescript-language-server", except-features = [ "format" ] },
+ { name = "biome" },
+ { name = "gpt"},
+]
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [
+ { name = "typescript-language-server", except-features = [ "format" ] },
+ { name = "biome" },
+ { name = "gpt"},
+]
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [
+ { name = "typescript-language-server", except-features = [ "format" ] },
+ { name = "biome" },
+ { name = "gpt"},
+]
+
+[[language]]
+name = "jsx"
+auto-format = true
+language-servers = [
+ { name = "typescript-language-server", except-features = [ "format" ] },
+ { name = "biome" },
+ { name = "gpt"},
+]
+
+[[language]]
+name = "json"
+language-servers = [
+ { name = "biome" },
+ { name = "gpt"},
+]
