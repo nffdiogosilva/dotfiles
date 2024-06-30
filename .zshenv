@@ -9,7 +9,7 @@ export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
 # editor
-export EDITOR=/opt/homebrew/bin/hx
+export EDITOR=$(brew --prefix)/bin/hx
 export VISUAL=$EDITOR
 
 # zsh
@@ -20,4 +20,4 @@ export HISTSIZE=12000                   # Maximum events for internal history
 
 # nodejs
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm

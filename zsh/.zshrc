@@ -1,4 +1,4 @@
-export PATH=/opt/homebrew/bin:$HOME/.local/bin:$PATH
+export PATH=$(brew --prefix)/bin:$HOME/.local/bin:$PATH
 
 # prompt
 eval "$(starship init zsh)"
@@ -35,4 +35,3 @@ export NVM_DIR="$HOME/.nvm"
 
 # aliases
 source $ZDOTDIR/aliases
-
