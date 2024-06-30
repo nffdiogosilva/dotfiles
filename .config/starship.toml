@@ -1,5 +1,20 @@
+format = """$all"""
+# format = """$character"""
+# right_format = """$all"""
+command_timeout = 1000
+
+[os]
+disabled = true
+
+[os.symbols]
+Macos = " "
+
 [docker_context]
 disabled = true
 
 [gcloud]
 disabled = true
+
+[python]
+symbol = " "
+

@@ -1,7 +1,7 @@
 after-login-command = []
 after-startup-command = [
   'exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false',
-  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0'
+  'exec-and-forget /opt/homebrew/bin/borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
 ]
 start-at-login = true
 enable-normalization-flatten-containers = true
@@ -22,26 +22,26 @@ outer.right =      12
 [exec]                   # Again, you don't need to copy all config sections to your config.
 inherit-env-vars = true  # If you don't touch "exec" section,
 [exec.env-vars]          # it will fallback to "default-config.toml"
-PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
+PATH = '/opt/homebrew/bin:${PATH}'
 
 [mode.main.binding]
-cmd-enter = 'exec-and-forget /Applications/Alacritty.app/Contents/MacOS/alacritty'
+cmd-enter = 'exec-and-forget alacritty msg create-window -e /opt/homebrew/bin/zellij || alacritty -e /opt/homebrew/bin/zellij'
 cmd-h = []
-alt-shift-d = 'fullscreen'
-alt-shift-space = 'layout horizontal vertical'
+ctrl-alt-d = 'fullscreen'
+ctrl-alt-space = 'layout horizontal vertical'
 
-alt-shift-h = 'focus left'
-alt-shift-j = 'focus down'
-alt-shift-k = 'focus up'
-alt-shift-l = 'focus right'
+ctrl-alt-h = 'focus left'
+ctrl-alt-j = 'focus down'
+ctrl-alt-k = 'focus up'
+ctrl-alt-l = 'focus right'
 
-alt-h = 'join-with left'
-alt-j = 'join-with down'
-alt-k = 'join-with up'
-alt-l = 'join-with right'
+# ctrl-alt-h = 'join-with left'
+# ctrl-alt-j = 'join-with down'
+# ctrl-alt-k = 'join-with up'
+# ctrl-alt-l = 'join-with right'
 
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
+ctrl-cmd-minus = 'resize smart -50'
+ctrl-cmd-equal = 'resize smart +50'
 
 cmd-1 = 'workspace term'
 cmd-2 = 'workspace web'
@@ -53,17 +53,17 @@ cmd-7 = 'workspace 7'
 cmd-8 = 'workspace 8'
 cmd-9 = 'workspace 9'
 
-alt-shift-1 = 'move-node-to-workspace term'
-alt-shift-2 = 'move-node-to-workspace web'
-alt-shift-3 = 'move-node-to-workspace chat'
-alt-shift-4 = 'move-node-to-workspace cal'
-alt-shift-5 = 'move-node-to-workspace 5'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7'
-alt-shift-8 = 'move-node-to-workspace 8'
-alt-shift-9 = 'move-node-to-workspace 9'
+ctrl-alt-1 = 'move-node-to-workspace term'
+ctrl-alt-2 = 'move-node-to-workspace web'
+ctrl-alt-3 = 'move-node-to-workspace chat'
+ctrl-alt-4 = 'move-node-to-workspace cal'
+ctrl-alt-5 = 'move-node-to-workspace 5'
+ctrl-alt-6 = 'move-node-to-workspace 6'
+ctrl-alt-7 = 'move-node-to-workspace 7'
+ctrl-alt-8 = 'move-node-to-workspace 8'
+ctrl-alt-9 = 'move-node-to-workspace 9'
 
-alt-shift-semicolon = 'mode service'
+ctrl-alt-semicolon = 'mode service'
 
 [mode.service.binding]
 r = ['reload-config', 'mode main']

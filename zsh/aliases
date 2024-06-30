@@ -1,24 +1,26 @@
 #!/usr/bin/env bash
-
 # System
 alias shutdown='sudo shutdown now'
 alias reboot='sudo reboot'
-alias suspend='sudo pm-suspend'
 
 # Filesystem
 alias cd='z'
 
 # zsh
-alias zenv='vim ${DOTFILES}/.zshenv'
-alias zalias='vim ${ZDOTDIR}/aliases'
-alias zconfig='vim ${ZDOTDIR}/.zshrc'
+alias zenv='$EDITOR ${DOTFILES}/.zshenv'
+alias zalias='$EDITOR ${ZDOTDIR}/aliases'
+alias zconfig='$EDITOR ${ZDOTDIR}/.zshrc'
 alias zsource='source ${ZDOTDIR}/.zshrc'
 
 # CLIs
 alias hg='history | grep'
+alias pcloud="docker container run --platform linux/amd64 -it --rm -v ~/.pcloud:/root/.pcloud alticelabs/pcloud"
 
 alias ls='eza --color=always --group-directories-first'
-alias ll='eza -la --color=always --group-directories-first'
+alias ll='eza -la --group-directories-first'
 
 # Git
 alias gitclean='git branch --merged| grep -Ev "(^\*|master|main|dev)"'
+
+# Helix with poetry to use proper venv
+alias phx='poetry run hx'
