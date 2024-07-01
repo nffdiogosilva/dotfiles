@@ -1,4 +1,9 @@
 .config/cache/*
 .config/local/*
+.config/btop/*
+.config/github-copilot/*
+.config/iterm2/*
+.config/lazygit/*
+
 **/.zcompdump
 **/.zsh_history
