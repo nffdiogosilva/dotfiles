@@ -1,4 +1,4 @@
-# My dotfiles
+# My dotfiles (always a WIP)
 
 This directory contains the dotfiles for my system
 
