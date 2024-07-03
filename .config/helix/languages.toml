@@ -18,7 +18,7 @@ name = "python"
 language-servers = [
   { name = "ruff-lsp", only-features = [ "format", "diagnostics" ] },
   { name = "pyright", except-features = [ "format" ] },
-  { name = "gpt"},
+  # { name = "gpt"},
 ]
 auto-format = true
 rulers = [89]
@@ -28,7 +28,7 @@ name = "javascript"
 language-servers = [
  { name = "typescript-language-server", except-features = [ "format" ] },
  { name = "biome" },
- { name = "gpt"},
+ # { name = "gpt"},
 ]
 auto-format = true
 
@@ -37,7 +37,7 @@ name = "typescript"
 language-servers = [
  { name = "typescript-language-server", except-features = [ "format" ] },
  { name = "biome" },
- { name = "gpt"},
+ # { name = "gpt"},
 ]
 
 [[language]]
@@ -46,7 +46,7 @@ auto-format = true
 language-servers = [
  { name = "typescript-language-server", except-features = [ "format" ] },
  { name = "biome" },
- { name = "gpt"},
+ # { name = "gpt"},
 ]
 
 [[language]]
@@ -55,12 +55,12 @@ auto-format = true
 language-servers = [
  { name = "typescript-language-server", except-features = [ "format" ] },
  { name = "biome" },
- { name = "gpt"},
+ # { name = "gpt"},
 ]
 
 [[language]]
 name = "json"
 language-servers = [
  { name = "biome" },
- { name = "gpt"},
+ # { name = "gpt"},
 ]

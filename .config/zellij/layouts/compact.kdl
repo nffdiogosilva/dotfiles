@@ -1,0 +1,6 @@
+layout {
+    pane size=1 borderless=true split_direction="vertical" {
+        plugin location="compact-bar"
+    }
+    pane
+}
