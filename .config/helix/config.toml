@@ -40,16 +40,24 @@ character = "|"
 skip-levels = 1
 
 [keys.normal]
-# configs
+# Configs
 C-r = [":reload"]
+# Remove default shortcuts
+A-n = []
+C-w = []
 
 # Cursor
 C-d = ["page_cursor_half_down", "align_view_center"]
 C-u = ["page_cursor_half_up", "align_view_center"]
 
-# Lines
+# Text manipulation
+D = ["select_mode", "goto_line_end", "delete_selection"]
+
+# Lines - move and duplicate
 A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-J = ["extend_to_line_bounds", "yank", "move_line_down", "paste_before"]
+A-K = ["extend_to_line_bounds", "yank", "move_line_up", "paste_after"]
 
 # Buffers
 H = ["goto_previous_buffer"]
@@ -60,18 +68,17 @@ C-h = ["jump_view_left"]
 C-j = ["jump_view_down"]
 C-k = ["jump_view_up"]
 C-l = ["jump_view_right"]
-C-t = ["transpose_view"]
-C-n = [":vsplit-new"]
-C-q = [":quit"]
+C-b = [":open"]
 C-p = [":vsplit"]
+C-n = [":vsplit-new"]
+C-t = ["transpose_view"]
+C-q = [":quit"]
 
-# Text manipulation
-D = ["select_mode", "goto_line_end", "delete_selection"]
 
 [keys.normal.space]
 o = [":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh"]
 C-b = ["file_picker_in_current_buffer_directory"]
-O = [":buffer-close-others"] # N = ["copy_selection_on_next_line"]
+O = [":buffer-close-others"]
 # M = ["copy_selection_on_prev_line"]
 
 [keys.select]
