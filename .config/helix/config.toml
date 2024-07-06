@@ -42,6 +42,7 @@ skip-levels = 1
 [keys.normal]
 # configs
 C-r = [":reload"]
+x = ["extend_to_line_bounds", "select_mode"]
 
 # Cursor
 C-d = ["page_cursor_half_down", "align_view_center"]
@@ -50,6 +51,9 @@ C-u = ["page_cursor_half_up", "align_view_center"]
 # Lines
 A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+A-J = ["extend_to_line_bounds", "yank", "move_line_down", "paste_before"]
+A-K = ["extend_to_line_bounds", "yank", "move_line_up", "paste_after"]
 
 # Buffers
 H = ["goto_previous_buffer"]
@@ -77,3 +81,5 @@ O = [":buffer-close-others"] # N = ["copy_selection_on_next_line"]
 [keys.select]
 A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+A-J = ["extend_to_line_bounds", "yank", "move_line_down", "paste_before"]
+A-K = ["extend_to_line_bounds", "yank", "move_line_up", "paste_after"]
