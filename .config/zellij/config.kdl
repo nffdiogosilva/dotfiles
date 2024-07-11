@@ -20,7 +20,11 @@ default_layout "compact"
 scrollback_editor "/opt/homebrew/bin/hx"
 
 keybinds {
+    locked {
+        bind "Alt L" { SwitchToMode "Normal"; }
+    }
     normal clear-defaults=true {
+        bind "Alt L" { SwitchToMode "Locked"; }
         bind "Alt q" { CloseFocus; }
 
         // Tabs
@@ -40,29 +44,38 @@ keybinds {
         bind "Alt 9" { GoToTab 9; }
         // Panes
         bind "Alt n" { NewPane "Right"; }
-        bind "Alt d" { NewPane "Down"; }
+        bind "Alt N" { NewPane "Down"; }
 
-        bind "Alt h" { MoveFocus "Left"; }
-        bind "Alt l" { MoveFocus "Right"; }
-        bind "Alt j" { MoveFocus "Down"; }
-        bind "Alt k" { MoveFocus "Up"; }
+        // bind "Alt h" { MoveFocus "Left"; }
+        // bind "Alt l" { MoveFocus "Right"; }
+        // bind "Alt j" { MoveFocus "Down"; }
+        // bind "Alt k" { MoveFocus "Up"; }
 
-        bind "Alt i" { FocusNextPane; }
-        bind "Alt o" { FocusPreviousPane; }
+        bind "Alt h" { FocusNextPane; }
+        bind "Alt l" { FocusPreviousPane; }
 
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
 
-        bind "Alt f" { ToggleFocusFullscreen; }
+        bind "Alt d" { ToggleFocusFullscreen; }
         bind "Alt e" { EditScrollback; }
         bind "Alt s" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true
             };
-            SwitchToMode "Normal"
+        }
+        bind "Alt g" {
+            Run "zellij" "run" "-f" "-x" "5%" "-y" "5%" "--width" "90%" "--height" "90%" "--close-on-exit" "--" "lazygit" {
+                close_on_exit true
+            };
+        }
+        bind "Alt f" {
+            Run "zellij" "run" "-f" "-x" "10%" "-y" "10%" "--width" "80%" "--height" "80%" "--close-on-exit" "--" "yazi" {
+                close_on_exit true
+            };
         }
     }
 }
@@ -78,8 +91,8 @@ plugins {
         hide_frame_for_single_pane "false"
 
         // format_left   "{mode} #[fg=#89B4FA,bold]{session}"
-        format_right   "{mode} #[fg=#89B4FA,bold]{session}"
-        format_center "{tabs}"
+        format_right   "#[fg=#89B4FA,bold]{session} {mode}"
+        format_left "{tabs}"
         // format_right  "{command_git_branch} {datetime}"
         format_space  ""
         border_enabled  "true"
@@ -87,8 +100,9 @@ plugins {
         border_format   "#[fg=#6C7086]{char}"
         border_position "top"
 
-        // mode_normal  "#[bg=blue] "
-        mode_tmux    "#[bg=#ffc387] "
+        mode_normal  "#[bg=blue] "
+        mode_locked  "#[bg=red] "
+        // mode_tmux    "#[bg=#ffc387] "
 
         tab_normal   "#[fg=#6C7086] {name} "
         tab_active   "#[fg=#9399B2,bold,italic] {name} "

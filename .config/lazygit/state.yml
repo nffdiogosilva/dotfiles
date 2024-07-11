@@ -1,0 +1,17 @@
+lastupdatecheck: 0
+recentrepos:
+    - /Users/ichigo/Developer/alticelabs/xcloud
+    - /Users/ichigo/Developer/engineai/inference-api
+    - /Users/ichigo/Developer/engineai/seaflow-engine
+    - /Users/ichigo/Developer/engineai/seaflow-api
+startuppopupversion: 5
+lastversion: 0.42.0
+customcommandshistory:
+    - q
+hidecommandlog: false
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always
