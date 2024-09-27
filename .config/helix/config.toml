@@ -15,22 +15,19 @@ left = [
   "spacer",
   "register",
   "version-control",
-  "spacer",
-  "spinner",
-]
-center = [
    "file-name",
    "file-modification-indicator",
    "read-only-indicator",
+  "spacer",
+  "spinner",
 ]
+# center = []
 right = [
   "diagnostics",
-  # "workspace-diagnostics",
   "selections",
   "position",
   "total-line-numbers",
   "file-encoding",
-  # "file-line-ending",
   "file-type",
 ]
 
@@ -42,26 +39,34 @@ skip-levels = 1
 [keys.normal]
 # configs
 C-r = [":reload"]
-C-o = [":config-open"]
-V = ["extend_to_line_bounds", "select_mode"]
-# p = ["replace_with_yanked"]
+H = ["goto_previous_buffer"]
+L = ["goto_next_buffer"]
 
-# Cursor
+# cursor
 C-d = ["page_cursor_half_down", "align_view_center"]
 C-u = ["page_cursor_half_up", "align_view_center"]
+
+"$" = ["goto_line_end_newline"]
+C-g = ["goto_file_end"]
 G = ["goto_file_end"]
 
-# Lines
+# text manipulation
+D = ["delete_char_backward"]
+C = ["kill_to_line_end", "insert_mode"]
+
+# selection
+V = ["select_line_below", "select_mode"]
+J = ["copy_selection_on_next_line"]
+K = ["copy_selection_on_prev_line"]
+
+# lines
 A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 A-J = ["extend_to_line_bounds", "yank", "move_line_down", "paste_before"]
 A-K = ["extend_to_line_bounds", "yank", "move_line_up", "paste_after"]
+A-I = ["split_selection_on_newline", "goto_line_start"]
 
-# Buffers
-H = ["goto_previous_buffer"]
-L = ["goto_next_buffer"]
-
-# Views
+# views
 C-h = ["jump_view_left"]
 C-j = ["jump_view_down"]
 C-k = ["jump_view_up"]
@@ -69,20 +74,24 @@ C-l = ["jump_view_right"]
 C-t = ["transpose_view"]
 C-n = [":vsplit-new"]
 C-q = [":quit"]
-C-p = [":vsplit"]
-
-# Text manipulation
-D = ["select_mode", "goto_line_end", "delete_selection"]
+C-v = [":vsplit"]
 
 [keys.normal.space]
 o = [":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh"]
-C-b = ["file_picker_in_current_buffer_directory"]
+B = ["file_picker_in_current_buffer_directory"]
 O = [":buffer-close-others"]
-# N = ["copy_selection_on_next_line"]
-# M = ["copy_selection_on_prev_line"]
+space = [":insert-output printf ' '"]
 
 [keys.select]
 A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 A-J = ["extend_to_line_bounds", "yank", "move_line_down", "paste_before"]
 A-K = ["extend_to_line_bounds", "yank", "move_line_up", "paste_after"]
+A-I = ["split_selection_on_newline"]
+
+C-g = ["goto_file_end"]
+"$" = ["goto_line_end_newline"]
+G = ["goto_file_end"]
+
+[keys.insert]
+"C-space" = ["move_char_right", ":insert-output printf ' '", "move_char_right"]

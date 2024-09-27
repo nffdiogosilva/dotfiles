@@ -28,7 +28,7 @@ decorations = "buttonless"
 dynamic_title = true
 # history = 10000
 # multiplier = 3
-opacity = 0.9
+# opacity = 0.9
 startup_mode = "Windowed"
 option_as_alt = "Both"
 

@@ -17,7 +17,7 @@ themes {
 }
 theme "catppuccin-mocha"
 default_layout "compact"
-scrollback_editor "/opt/homebrew/bin/hx"
+scrollback_editor "/usr/local/bin/hx"
 
 keybinds {
     locked {
@@ -46,11 +46,10 @@ keybinds {
         bind "Alt n" { NewPane "Right"; }
         bind "Alt N" { NewPane "Down"; }
 
-        // bind "Alt h" { MoveFocus "Left"; }
-        // bind "Alt l" { MoveFocus "Right"; }
-        // bind "Alt j" { MoveFocus "Down"; }
-        // bind "Alt k" { MoveFocus "Up"; }
-
+        // bind "Left" { MoveFocus "Left"; }
+        // bind "Right" { MoveFocus "Right"; }
+        // bind "Down" { MoveFocus "Down"; }
+        // bind "Up" { MoveFocus "Up"; }
         bind "Alt h" { FocusNextPane; }
         bind "Alt l" { FocusPreviousPane; }
 
@@ -61,7 +60,7 @@ keybinds {
 
         bind "Alt d" { ToggleFocusFullscreen; }
         bind "Alt e" { EditScrollback; }
-        bind "Alt s" {
+        bind "Alt o" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
                 move_to_focused_tab true
@@ -91,8 +90,8 @@ plugins {
         hide_frame_for_single_pane "false"
 
         // format_left   "{mode} #[fg=#89B4FA,bold]{session}"
-        format_right   "#[fg=#89B4FA,bold]{session} {mode}"
-        format_left "{tabs}"
+        // format_right   ""
+        format_left "#[fg=#89B4FA,bold]{mode} {session} {tabs}"
         // format_right  "{command_git_branch} {datetime}"
         format_space  ""
         border_enabled  "true"
@@ -116,4 +115,3 @@ plugins {
         // datetime_timezone "Europe/Berlin"
     }
 }
-

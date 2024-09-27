@@ -20,7 +20,10 @@ alias ls='eza --color=always --group-directories-first'
 alias ll='eza -la --group-directories-first'
 
 # Git
-alias gitclean='git branch --merged| grep -Ev "(^\*|master|main|dev)"'
+alias gitclean='git branch --merged | grep -Ev "(^\*|master|main|dev|staging|production)" | xargs git branch -d'
 
 # Helix with poetry to use proper venv
 alias phx='poetry run hx'
+
+# Zoxide (Filesystem)
+alias cd='z'
