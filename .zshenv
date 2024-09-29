@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH
+
 # dotfiles
 export DOTFILES="$HOME/.dotfiles"
 
@@ -9,7 +11,7 @@ export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
 # editor
-export EDITOR=/usr/local/bin/hx
+export EDITOR=$(brew --prefix)/bin/hx
 export VISUAL=$EDITOR
 
 # zsh

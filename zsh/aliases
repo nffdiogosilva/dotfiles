@@ -7,9 +7,9 @@ alias reboot='sudo reboot'
 alias cd='z'
 
 # zsh
-alias zenv='$EDITOR ${DOTFILES}/.zshenv'
-alias zalias='$EDITOR ${ZDOTDIR}/aliases'
-alias zconfig='$EDITOR ${ZDOTDIR}/.zshrc'
+alias zenv='${EDITOR} ${DOTFILES}/.zshenv'
+alias zalias='${EDITOR} ${ZDOTDIR}/aliases'
+alias zconfig='${EDITOR} ${ZDOTDIR}/.zshrc'
 alias zsource='source ${ZDOTDIR}/.zshrc'
 
 # CLIs

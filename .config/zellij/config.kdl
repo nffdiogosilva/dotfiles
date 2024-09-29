@@ -17,7 +17,7 @@ themes {
 }
 theme "catppuccin-mocha"
 default_layout "compact"
-scrollback_editor "/usr/local/bin/hx"
+// scrollback_editor $EDITOR
 
 keybinds {
     locked {
@@ -67,12 +67,12 @@ keybinds {
             };
         }
         bind "Alt g" {
-            Run "zellij" "run" "-f" "-x" "5%" "-y" "5%" "--width" "90%" "--height" "90%" "--close-on-exit" "--" "lazygit" {
+            Run "zellij" "run" "-f" "-x" "5%" "-y" "5%" "--width" "90%" "--height" "90%" "--close-on-exit" "--" "gitui" {
                 close_on_exit true
             };
         }
         bind "Alt f" {
-            Run "zellij" "run" "-f" "-x" "10%" "-y" "10%" "--width" "80%" "--height" "80%" "--close-on-exit" "--" "yazi" {
+            Run "zellij" "run" "-f" "-x" "5%" "-y" "10%" "--width" "90%" "--height" "90%" "--close-on-exit" "--" "yazi" {
                 close_on_exit true
             };
         }
