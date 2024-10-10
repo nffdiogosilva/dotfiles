@@ -16,8 +16,10 @@ themes {
     }
 }
 theme "catppuccin-mocha"
+
 default_layout "compact"
-// scrollback_editor $EDITOR
+
+scrollback_editor "/opt/homebrew/bin/hx"
 
 keybinds {
     locked {

@@ -1,9 +1,11 @@
-export PATH=$(brew --prefix)/bin:$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
 export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
 
 # prompt
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
 # zsh options
 setopt AUTO_CD
 setopt HIST_SAVE_NO_DUPS
@@ -29,13 +31,12 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 # nodejs
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
-# [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="$HOME/.nvm"
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # aliases
 source $ZDOTDIR/aliases
-
 
 global_replace() {
     if [ "$#" -ne 3 ]; then

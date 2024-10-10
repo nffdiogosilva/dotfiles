@@ -1,7 +1,6 @@
 after-login-command = []
 after-startup-command = [
   'exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false',
-  # 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
 ]
 start-at-login = true
 enable-normalization-flatten-containers = true
@@ -22,10 +21,10 @@ key-mapping.preset = 'qwerty'
 [exec]                   # Again, you don't need to copy all config sections to your config.
 inherit-env-vars = true  # If you don't touch "exec" section,
 [exec.env-vars]          # it will fallback to "default-config.toml"
-PATH = '/usr/local/bin:${PATH}'
+PATH = '/opt/homebrew/bin:/usr/local/bin'
 
 [mode.main.binding]
-cmd-enter = 'exec-and-forget alacritty msg create-window -e /usr/local/bin/zellij attach -c default || alacritty -e /usr/local/bin/zellij attach -c default'
+cmd-enter = 'exec-and-forget alacritty msg create-window || alacritty'
 cmd-h = []
 ctrl-alt-d = 'fullscreen'
 ctrl-alt-space = 'layout horizontal vertical'

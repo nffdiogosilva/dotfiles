@@ -15,13 +15,12 @@ left = [
   "spacer",
   "register",
   "version-control",
-   "file-name",
-   "file-modification-indicator",
-   "read-only-indicator",
+  "file-name",
+  "file-modification-indicator",
+  "read-only-indicator",
   "spacer",
   "spinner",
 ]
-# center = []
 right = [
   "diagnostics",
   "selections",
@@ -83,6 +82,9 @@ O = [":buffer-close-others"]
 space = [":insert-output printf ' '"]
 
 [keys.select]
+k = ["select_line_above"]
+j = ["select_line_below"]
+
 A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 A-J = ["extend_to_line_bounds", "yank", "move_line_down", "paste_before"]

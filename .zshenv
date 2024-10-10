@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-export PATH=/opt/homebrew/bin:/usr/local/bin:$PATH
+export PATH=/opt/homebrew/bin:/usr/local/bin
 
 # dotfiles
 export DOTFILES="$HOME/.dotfiles"
@@ -15,13 +15,11 @@ export EDITOR=$(brew --prefix)/bin/hx
 export VISUAL=$EDITOR
 
 # zsh
+export SHELL=$(brew --prefix)/bin/zsh
 export ZDOTDIR="$DOTFILES/zsh"
 export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
 export SAVEHIST=10000                   # Maximum events in history file
 export HISTSIZE=12000                   # Maximum events for internal history
 
-# export ZELLIJ_CONFIG_DIR="$XDG_CONFIG_HOME/zellij"
-
-# nodejs
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/bin/opt/nvm/nvm.sh" ] && \. "/usr/local/bin/opt/nvm/nvm.sh"  # This loads nvm
+# Workaround to make zellij load env vars since it doesn't support "login shell"
+source $ZDOTDIR/.zshrc
