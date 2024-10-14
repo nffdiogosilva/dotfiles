@@ -15,12 +15,12 @@ shape = "Block"
 
 [[keyboard.bindings]]
  chars = "\u001BF"
- key = "l"
+ key = "Right"
  mods = "Alt"
 
 [[keyboard.bindings]]
  chars = "\u001BB"
- key = "h"
+ key = "Left"
  mods = "Alt"
 
 [window]
