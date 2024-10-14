@@ -76,10 +76,11 @@ C-q = [":quit"]
 C-v = [":vsplit"]
 
 [keys.normal.space]
-o = [":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/yazi-picker.sh"]
+o = [":sh zellij run -c -f -x 10% -y 10% --width 80% --height 80% -- zsh ~/.config/helix/yazi-picker.sh open"]
+g = [":sh zellij run -c -f -x 10% -y 10% --width 80% --height 80% -- gitui", ":buffer-close!", ":redraw"]
 B = ["file_picker_in_current_buffer_directory"]
 O = [":buffer-close-others"]
-space = [":insert-output printf ' '"]
+# space = [":insert-output printf ' '"]
 
 [keys.select]
 k = ["select_line_above"]
