@@ -5,7 +5,7 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/) — symlinks everyth
 ## Quick start (fresh machine)
 
 ```sh
-bash <(curl -sL https://raw.githubusercontent.com/nffdiogosilva/dotfiles/main/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/nffdiogosilva/dotfiles/main/install.sh) # still untested
 ```
 
 This installs Homebrew, all dependencies (including building [Helix](https://github.com/nffdiogosilva/helix) from source), clones the repo, and runs `stow .`.
