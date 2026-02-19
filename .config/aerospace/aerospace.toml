@@ -1,38 +1,41 @@
 after-login-command = []
 after-startup-command = [
   'exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false',
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=3.0',
 ]
 start-at-login = true
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 accordion-padding = 30
+# Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
+
 default-root-container-orientation = 'auto'
 key-mapping.preset = 'qwerty'
 
-# [gaps]
-# inner.horizontal = 15
+[gaps]
+inner.horizontal = 6
 # inner.vertical =   15
-# outer.left =       12
-# outer.bottom =     15
-# outer.top =        10
-# outer.right =      12
+outer.top =        2
+outer.bottom =     2
+outer.left =       2
+outer.right =      2
 
 [exec]                   # Again, you don't need to copy all config sections to your config.
 inherit-env-vars = true  # If you don't touch "exec" section,
 [exec.env-vars]          # it will fallback to "default-config.toml"
-PATH = '/opt/homebrew/bin:/usr/local/bin'
+PATH = '/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'
 
 [mode.main.binding]
-cmd-enter = 'exec-and-forget alacritty msg create-window || alacritty'
+ctrl-enter = 'exec-and-forget usr/bin/open /Applications/Ghostty.app'
 cmd-h = []
-ctrl-alt-d = 'fullscreen'
-ctrl-alt-space = 'layout horizontal vertical'
+ctrl-cmd-d = 'fullscreen'
+ctrl-cmd-space = 'layout horizontal vertical'
 
-ctrl-alt-h = 'focus left'
-ctrl-alt-j = 'focus down'
-ctrl-alt-k = 'focus up'
-ctrl-alt-l = 'focus right'
+ctrl-cmd-h = 'focus left'
+ctrl-cmd-j = 'focus down'
+ctrl-cmd-k = 'focus up'
+ctrl-cmd-l = 'focus right'
 
 # ctrl-alt-h = 'join-with left'
 # ctrl-alt-j = 'join-with down'
@@ -42,28 +45,29 @@ ctrl-alt-l = 'focus right'
 ctrl-cmd-minus = 'resize smart -50'
 ctrl-cmd-equal = 'resize smart +50'
 
-cmd-0 = 'workspace default'
-cmd-1 = 'workspace code'
-cmd-2 = 'workspace web'
-cmd-3 = 'workspace chat'
-cmd-4 = 'workspace cal'
-cmd-5 = 'workspace 5'
-cmd-6 = 'workspace 6'
-cmd-7 = 'workspace 7'
-cmd-8 = 'workspace 8'
-cmd-9 = 'workspace 9'
+ctrl-0 = 'workspace 0'
+ctrl-1 = 'workspace 1'
+ctrl-2 = 'workspace 2'
+ctrl-3 = 'workspace 3'
+ctrl-4 = 'workspace 4'
+ctrl-5 = 'workspace 5'
+ctrl-6 = 'workspace 6'
+ctrl-7 = 'workspace 7'
+ctrl-8 = 'workspace 8'
+ctrl-9 = 'workspace 9'
 
-ctrl-alt-1 = 'move-node-to-workspace term'
-ctrl-alt-2 = 'move-node-to-workspace web'
-ctrl-alt-3 = 'move-node-to-workspace chat'
-ctrl-alt-4 = 'move-node-to-workspace cal'
-ctrl-alt-5 = 'move-node-to-workspace 5'
-ctrl-alt-6 = 'move-node-to-workspace 6'
-ctrl-alt-7 = 'move-node-to-workspace 7'
-ctrl-alt-8 = 'move-node-to-workspace 8'
-ctrl-alt-9 = 'move-node-to-workspace 9'
+ctrl-cmd-0 = 'move-node-to-workspace 0'
+ctrl-cmd-1 = 'move-node-to-workspace 1'
+ctrl-cmd-2 = 'move-node-to-workspace 2'
+ctrl-cmd-3 = 'move-node-to-workspace 3'
+ctrl-cmd-4 = 'move-node-to-workspace 4'
+ctrl-cmd-5 = 'move-node-to-workspace 5'
+ctrl-cmd-6 = 'move-node-to-workspace 6'
+ctrl-cmd-7 = 'move-node-to-workspace 7'
+ctrl-cmd-8 = 'move-node-to-workspace 8'
+ctrl-cmd-9 = 'move-node-to-workspace 9'
 
-ctrl-alt-semicolon = 'mode service'
+ctrl-cmd-semicolon = 'mode service'
 
 [mode.service.binding]
 r = ['reload-config', 'mode main']

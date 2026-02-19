@@ -1,8 +1,44 @@
-.config/cache/*
-.config/local/*
-.config/btop/*
-.config/github-copilot/*
-.config/iterm2/*
+# =============================================================================
+# macOS
+# =============================================================================
+**/.DS_Store
 
+# =============================================================================
+# ZSH — generated state & session artifacts
+# =============================================================================
 **/.zcompdump
 **/.zsh_history
+zsh/.zsh_sessions/
+
+# =============================================================================
+# Shell secrets (never commit)
+# =============================================================================
+zsh/secrets.zsh
+
+# =============================================================================
+# XDG cache & local data
+# =============================================================================
+.config/cache/
+.config/local/
+
+# =============================================================================
+# Tool state & caches (auto-generated, machine-specific)
+# =============================================================================
+.config/btop/
+.config/claude/
+.config/.copilot/
+.config/github-copilot/
+.config/raycast/
+.config/colima/
+.config/lazygit/state.yml
+.config/pgcli/log
+.config/pgcli/history
+.config/cagent/
+
+# =============================================================================
+# Editor/tool runtime & backup directories
+# =============================================================================
+.config/nvim/
+.config/helix/runtime
+.config/helix/.claude/
+.config/helix/.helix/

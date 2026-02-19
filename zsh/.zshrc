@@ -10,10 +10,12 @@ bindkey '\e[B' history-search-forward
 
 # zsh autocomplete
 source $ZDOTDIR/completion.zsh
+
 # zsh plugins
 source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Prompt and shell UX tools.
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
@@ -21,17 +23,34 @@ eval "$(fzf --zsh)"
 # aliases
 source $ZDOTDIR/aliases
 
-global_replace() {
-    if [ "$#" -ne 3 ]; then
-        echo "Usage: global_replace <directory> <search_pattern> <replace_pattern>"
-        return 1
-    fi
-
-    local directory=$1
-    local search_pattern=$2
-    local replace_pattern=$3
-
-    find "$directory" -type f ! -name '.*' -exec grep -Iq . {} \; -and -exec sed -i '' "s|$search_pattern|$replace_pattern|g" {} +
+# Launch yazi and cd into the last selected directory.
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
+zle -N y
+bindkey "^Y" y
 
-alias gr='global_replace'
+# Resume foreground job and redraw a clean prompt line.
+function Resume {
+  fg
+  zle push-input
+  BUFFER=""
+  zle accept-line
+}
+zle -N Resume
+bindkey "^Z" Resume
+
+# bun completions and executable path.
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/ichigo/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

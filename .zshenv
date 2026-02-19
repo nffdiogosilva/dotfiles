@@ -1,33 +1,37 @@
 #!/usr/bin/env zsh
-export PATH=$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 
-export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
+# =============================================================================
+# Core PATH — available to all shells (login + non-login)
+# =============================================================================
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
 
-# dotfiles
+# =============================================================================
+# Dotfiles & XDG base directories
+# =============================================================================
 export DOTFILES="$HOME/.dotfiles"
-
-# XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
-# editor
-export EDITOR=$(brew --prefix)/bin/hx
+# =============================================================================
+# Editor
+# =============================================================================
+export EDITOR=hx
 export VISUAL=$EDITOR
 
-# zsh
+# =============================================================================
+# Zsh directories & history
+# =============================================================================
 export SHELL=$(brew --prefix)/bin/zsh
 export ZDOTDIR="$DOTFILES/zsh"
-export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
-export SAVEHIST=10000                   # Maximum events in history file
-export HISTSIZE=12000                   # Maximum events for internal history
+export HISTFILE="$ZDOTDIR/.zhistory"
+export SAVEHIST=10000
+export HISTSIZE=12000
 
-# python
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# =============================================================================
+# Misc
+# =============================================================================
+export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
 
-# nodejs
-export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Machine-local secrets (API keys, tokens — never committed)
+[[ -f "$ZDOTDIR/secrets.zsh" ]] && source "$ZDOTDIR/secrets.zsh"

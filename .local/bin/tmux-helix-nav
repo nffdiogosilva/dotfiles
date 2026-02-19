@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Seamless navigation between tmux panes and helix windows
+# Usage: tmux-helix-nav <direction: left|down|up|right>
+
+direction="$1"
+
+case "$direction" in
+  left)  hx_key="M-h"; tmux_dir="-L" ;;
+  down)  hx_key="M-j"; tmux_dir="-D" ;;
+  up)    hx_key="M-k"; tmux_dir="-U" ;;
+  right) hx_key="M-l"; tmux_dir="-R" ;;
+  *) exit 1 ;;
+esac
+
+pane_cmd="$(tmux display-message -p '#{pane_current_command}')"
+
+if [[ "$pane_cmd" =~ ^hx$ ]]; then
+  # In helix: send key, helix's jump_view_*_or_tmux handles the rest
+  tmux send-keys "$hx_key"
+else
+  # Not in helix: do tmux pane navigation
+  tmux select-pane "$tmux_dir"
+fi

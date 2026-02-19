@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+file=$(mktemp /tmp/tmux-scrollback-XXXXXX).txt
+tmux capture-pane -pS -32768 > "$file"
+editor="${EDITOR:-hx}"
+tmux new-window -n :scrollback "$editor + '$file'; rm -f '$file'"

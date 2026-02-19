@@ -7,12 +7,3 @@
 [submodule "zsh/plugins/zsh-syntax-highlighting"]
 	path = zsh/plugins/zsh-syntax-highlighting
 	url = git@github.com:zsh-users/zsh-syntax-highlighting.git
-[submodule "zsh/prompt/pure"]
-	path = zsh/prompt/pure
-	url = git@github.com:sindresorhus/pure.git
-[submodule "iterm/themes/catppucin"]
-	path = iterm/themes/catppucin
-	url = git@github.com:catppuccin/iterm.git
-[submodule ".config/alacritty/themes/catppuccin"]
-	path = .config/alacritty/themes/catppuccin
-	url = git@github.com:catppuccin/alacritty.git

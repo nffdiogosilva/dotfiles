@@ -1,100 +1,136 @@
+# =============================================================================
+# THEME & EDITOR SETTINGS
+# =============================================================================
 theme = "catppuccin_mocha_transparent"
 
 [editor]
-scrolloff = 20
-line-number = "relative"
+inline-completion-timeout = 150
+inline-completion-auto-trigger = true
+scrolloff = 10
 cursorline = true
 true-color = true
 color-modes = true
-rulers = []
 bufferline = "multiple"
+default-line-ending = "lf"
+end-of-line-diagnostics = "hint"
+jump-label-alphabet = "jfkdls;aurieowpqnvmcxz"
 
 [editor.statusline]
-left = [
-  "mode",
-  "spacer",
-  "register",
-  "version-control",
-  "file-name",
-  "file-modification-indicator",
-  "read-only-indicator",
-  "spacer",
-  "spinner",
-]
-right = [
-  "diagnostics",
-  "selections",
-  "position",
-  "total-line-numbers",
-  "file-encoding",
-  "file-type",
-]
+left = ["mode", "spinner", "version-control", "spacer", "file-name", "read-only-indicator", "file-modification-indicator"]
+center = []
+right = ["diagnostics", "selections", "register", "position", "file-encoding"]
 
 [editor.indent-guides]
 render = true
-character = "|"
+character = "┆"
 skip-levels = 1
 
+# =============================================================================
+# NORMAL MODE KEYBINDINGS
+# =============================================================================
 [keys.normal]
-# configs
-C-r = [":reload"]
+# Quick actions
+"A-'" = ["copy_between_registers"]
+ret = ["goto_word"]
+
+# Buffer & page navigation
 H = ["goto_previous_buffer"]
 L = ["goto_next_buffer"]
 
-# cursor
+
 C-d = ["page_cursor_half_down", "align_view_center"]
 C-u = ["page_cursor_half_up", "align_view_center"]
 
-"$" = ["goto_line_end_newline"]
-C-g = ["goto_file_end"]
-G = ["goto_file_end"]
-
-# text manipulation
-D = ["delete_char_backward"]
+# Text manipulation
 C = ["kill_to_line_end", "insert_mode"]
+D = ["delete_char_backward"]
+x = ["select_line_below", "select_mode"]
 
-# selection
+# Selection & multi-cursor
 V = ["select_line_below", "select_mode"]
 J = ["copy_selection_on_next_line"]
 K = ["copy_selection_on_prev_line"]
+A-backspace =  ["join_selections"]
 
-# lines
-A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
-A-J = ["extend_to_line_bounds", "yank", "move_line_down", "paste_before"]
-A-K = ["extend_to_line_bounds", "yank", "move_line_up", "paste_after"]
-A-I = ["split_selection_on_newline", "goto_line_start"]
+# Line operations
+# A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+# A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 
-# views
-C-h = ["jump_view_left"]
-C-j = ["jump_view_down"]
-C-k = ["jump_view_up"]
-C-l = ["jump_view_right"]
+# Window management (seamless helix/tmux navigation)
+A-h = ["jump_view_left_or_tmux"]
+A-j = ["jump_view_down_or_tmux"]
+A-k = ["jump_view_up_or_tmux"]
+A-l = ["jump_view_right_or_tmux"]
+C-l = [":redraw"]
 C-t = ["transpose_view"]
-C-n = [":vsplit-new"]
-C-q = [":quit"]
+C-n = [":new"]
 C-v = [":vsplit"]
+C-q = [":quit!"]
 
-[keys.normal.space]
-o = [":sh zellij run -c -f -x 10% -y 10% --width 80% --height 80% -- zsh ~/.config/helix/yazi-picker.sh open"]
-g = [":sh zellij run -c -f -x 10% -y 10% --width 80% --height 80% -- gitui", ":buffer-close!", ":redraw"]
-B = ["file_picker_in_current_buffer_directory"]
-O = [":buffer-close-others"]
-# space = [":insert-output printf ' '"]
+# Configuration
+C-c = [":config-open"]
+C-r = [":reload-all"]
 
-[keys.select]
-k = ["select_line_above"]
-j = ["select_line_below"]
+# # Git integration - LazyGit
+C-g = [
+  ":write-all",
+  ":new",
+  ":insert-output lazygit",
+  ":buffer-close!",
+  ":redraw",
+  ":reload-all"
+]
+# C-b = [":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"]
 
-A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
-A-J = ["extend_to_line_bounds", "yank", "move_line_down", "paste_before"]
-A-K = ["extend_to_line_bounds", "yank", "move_line_up", "paste_after"]
-A-I = ["split_selection_on_newline"]
+# =============================================================================
+# GOTO MODE EXTENSIONS
+# =============================================================================
+[keys.normal.g]
+e = ["goto_file_end"]
 
-C-g = ["goto_file_end"]
-"$" = ["goto_line_end_newline"]
-G = ["goto_file_end"]
-
+# =============================================================================
+# INSERT MODE KEYBINDINGS
+# =============================================================================
 [keys.insert]
-"C-space" = ["move_char_right", ":insert-output printf ' '", "move_char_right"]
+tab = "inline_completion_accept"
+C-e = "inline_completion_dismiss"
+A-n = "inline_completion_next"
+A-p = "inline_completion_prev"
+C-space = ["move_char_right", ":insert-output printf ' '", "move_char_right"]
+
+# =============================================================================
+# SPACE LEADER KEYBINDINGS
+# =============================================================================
+[keys.normal.space]
+# File operations
+O = [":buffer-close-others!"]
+
+# Yazi file manager integration
+e = [
+  ":sh rm -f /tmp/unique-file-h21a434",
+  ":insert-output yazi '%{buffer_name}' --chooser-file=/tmp/unique-file-h21a434",
+  ":insert-output echo \"x1b[?1049h\" > /dev/tty",
+  ":open %sh{cat /tmp/unique-file-h21a434}",
+  ":redraw",
+]
+
+# Scooter integration
+C-r = [
+  ":write-all",
+  ":insert-output scooter >/dev/tty",
+  ":redraw",
+  ":reload-all"
+]
+
+# =============================================================================
+# SELECT MODE KEYBINDINGS
+# =============================================================================
+[keys.select]
+A-backspace =  ["join_selections"]
+
+[keys.select.g]
+e = ["extend_to_file_end"]
+
+[editor.inline-blame]
+show = "cursor-line"
+auto-fetch = true

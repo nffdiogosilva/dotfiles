@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 paths=$(yazi --chooser-file=/dev/stdout | while read -r; do printf "%q " "$REPLY"; done)
 

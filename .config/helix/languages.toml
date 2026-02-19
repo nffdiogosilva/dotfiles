@@ -1,77 +1,35 @@
-[language-server.biome]
-command = "biome"
-args = ["lsp-proxy"]
+[language-server.pyrefly]
+command = "pyrefly"
+args = ["lsp"]
 
-[language-server.ruff-lsp]
-command = "ruff-lsp"
+[language-server.ty]
+command = "ty"
+args = ["server"]
 
-[language-server.pyright]
-command = "pyright-langserver"
+[language-server.copilot]
+command = "copilot-language-server"
+args = ["--stdio"]
 
-[language-server.gpt]
-command = "deno"
-args = ["run", "--allow-net","--allow-env", "https://raw.githubusercontent.com/sigmaSd/helix-gpt/0.31-deno/src/app.ts"]
-environment = {HANDLER = "copilot"}
+[language-server.copilot.config]
+editorInfo = { name = "helix", version = "25.07.1" }
+editorPluginInfo = { name = "helix-copilot", version = "0.1.0" }
 
 [[language]]
 name = "python"
-language-servers = [
-  { name = "ruff-lsp", only-features = [ "format", "diagnostics" ] },
-  { name = "pyright", except-features = [ "format" ] },
-  # { name = "gpt"},
-]
-auto-format = true
-rulers = [89]
+language-servers = ["ty", "copilot"]
 
 [[language]]
-name = "javascript"
-language-servers = [
- { name = "typescript-language-server", except-features = [ "format" ] },
- { name = "biome" },
- # { name = "gpt"},
-]
-auto-format = true
+name = "rust"
+language-servers = ["rust-analyzer", "copilot"]
 
 [[language]]
 name = "typescript"
-language-servers = [
- { name = "typescript-language-server", except-features = [ "format" ] },
- { name = "biome" },
- # { name = "gpt"},
-]
+language-servers = ["typescript-language-server", "copilot"]
 
 [[language]]
-name = "tsx"
-auto-format = true
-language-servers = [
- { name = "typescript-language-server", except-features = [ "format" ] },
- { name = "biome" },
- # { name = "gpt"},
-]
+name = "javascript"
+language-servers = ["typescript-language-server", "copilot"]
 
 [[language]]
-name = "jsx"
-auto-format = true
-language-servers = [
- { name = "typescript-language-server", except-features = [ "format" ] },
- { name = "biome" },
- # { name = "gpt"},
-]
-
-[[language]]
-name = "json"
-language-servers = [
- { name = "biome" },
- # { name = "gpt"},
-]
-
-[language-server.rust-analyzer]
-command = "rust-analyzer"
-
-[language-server.rust-analyzer.config]
-inlayHints.bindingModeHints.enable = false
-inlayHints.closingBraceHints.minLines = 10
-inlayHints.closureReturnTypeHints.enable = "with_block"
-inlayHints.discriminantHints.enable = "fieldless"
-inlayHints.lifetimeElisionHints.enable = "skip_trivial"
-inlayHints.typeHints.hideClosureInitialization = false
+name = "go"
+language-servers = ["gopls", "copilot"]
