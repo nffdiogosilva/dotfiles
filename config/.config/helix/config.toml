@@ -1,0 +1,136 @@
+# =============================================================================
+# THEME & EDITOR SETTINGS
+# =============================================================================
+theme = "catppuccin_mocha_transparent"
+
+[editor]
+inline-completion-timeout = 150
+inline-completion-auto-trigger = true
+scrolloff = 10
+cursorline = true
+true-color = true
+color-modes = true
+bufferline = "multiple"
+default-line-ending = "lf"
+end-of-line-diagnostics = "hint"
+jump-label-alphabet = "jfkdls;aurieowpqnvmcxz"
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "spacer", "file-name", "read-only-indicator", "file-modification-indicator"]
+center = []
+right = ["diagnostics", "selections", "register", "position", "file-encoding"]
+
+[editor.indent-guides]
+render = true
+character = "┆"
+skip-levels = 1
+
+# =============================================================================
+# NORMAL MODE KEYBINDINGS
+# =============================================================================
+[keys.normal]
+# Quick actions
+"A-'" = ["copy_between_registers"]
+ret = ["goto_word"]
+
+# Buffer & page navigation
+H = ["goto_previous_buffer"]
+L = ["goto_next_buffer"]
+
+
+C-d = ["page_cursor_half_down", "align_view_center"]
+C-u = ["page_cursor_half_up", "align_view_center"]
+
+# Text manipulation
+C = ["kill_to_line_end", "insert_mode"]
+D = ["delete_char_backward"]
+x = ["select_line_below", "select_mode"]
+
+# Selection & multi-cursor
+V = ["select_line_below", "select_mode"]
+J = ["copy_selection_on_next_line"]
+K = ["copy_selection_on_prev_line"]
+A-backspace =  ["join_selections"]
+
+# Line operations
+# A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+# A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+# Window management (seamless helix/tmux navigation)
+A-h = ["jump_view_left_or_tmux"]
+A-j = ["jump_view_down_or_tmux"]
+A-k = ["jump_view_up_or_tmux"]
+A-l = ["jump_view_right_or_tmux"]
+C-l = [":redraw"]
+C-t = ["transpose_view"]
+C-n = [":new"]
+C-v = [":vsplit"]
+C-q = [":quit!"]
+
+# Configuration
+C-c = [":config-open"]
+C-r = [":reload-all"]
+
+# # Git integration - LazyGit
+C-g = [
+  ":write-all",
+  ":new",
+  ":insert-output lazygit",
+  ":buffer-close!",
+  ":redraw",
+  ":reload-all"
+]
+# C-b = [":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"]
+
+# =============================================================================
+# GOTO MODE EXTENSIONS
+# =============================================================================
+[keys.normal.g]
+e = ["goto_file_end"]
+
+# =============================================================================
+# INSERT MODE KEYBINDINGS
+# =============================================================================
+[keys.insert]
+tab = "inline_completion_accept"
+C-e = "inline_completion_dismiss"
+A-n = "inline_completion_next"
+A-p = "inline_completion_prev"
+C-space = ["move_char_right", ":insert-output printf ' '", "move_char_right"]
+
+# =============================================================================
+# SPACE LEADER KEYBINDINGS
+# =============================================================================
+[keys.normal.space]
+# File operations
+O = [":buffer-close-others!"]
+
+# Yazi file manager integration
+e = [
+  ":sh rm -f /tmp/unique-file-h21a434",
+  ":insert-output yazi '%{buffer_name}' --chooser-file=/tmp/unique-file-h21a434",
+  ":insert-output echo \"x1b[?1049h\" > /dev/tty",
+  ":open %sh{cat /tmp/unique-file-h21a434}",
+  ":redraw",
+]
+
+# Scooter integration
+C-r = [
+  ":write-all",
+  ":insert-output scooter >/dev/tty",
+  ":redraw",
+  ":reload-all"
+]
+
+# =============================================================================
+# SELECT MODE KEYBINDINGS
+# =============================================================================
+[keys.select]
+A-backspace =  ["join_selections"]
+
+[keys.select.g]
+e = ["extend_to_file_end"]
+
+[editor.inline-blame]
+show = "cursor-line"
+auto-fetch = true

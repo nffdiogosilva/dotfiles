@@ -1,0 +1,8 @@
+# Ignore machine-local state that may exist inside the repo directory.
+\.DS_Store
+\.zshenv
+\.zcompdump.*
+\.zsh_history
+\.zsh_sessions
+secrets\.zsh
+^prompt$

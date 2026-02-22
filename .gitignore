@@ -18,27 +18,29 @@ zsh/secrets.zsh
 # =============================================================================
 # XDG cache & local data
 # =============================================================================
-.config/cache/
-.config/local/
+**/cache/
+**/local/share/
 
 # =============================================================================
 # Tool state & caches (auto-generated, machine-specific)
 # =============================================================================
-.config/btop/
-.config/claude/
-.config/.copilot/
-.config/github-copilot/
-.config/raycast/
-.config/colima/
-.config/lazygit/state.yml
-.config/pgcli/log
-.config/pgcli/history
-.config/cagent/
+**/.config/btop/
+**/.config/claude/
+**/.config/.copilot/
+**/.config/github-copilot/
+**/.config/raycast/
+**/.config/colima/
+**/.config/lazygit/state.yml
+**/.config/pgcli/log
+**/.config/pgcli/history
+**/.config/cagent/
+**/.config/opencode/
 
 # =============================================================================
 # Editor/tool runtime & backup directories
 # =============================================================================
-.config/nvim/
-.config/helix/runtime
-.config/helix/.claude/
-.config/helix/.helix/
+**/.config/nvim/
+**/.config/helix/runtime
+**/.config/helix/.claude/
+**/.config/helix/.helix/
+**/.config/zed/

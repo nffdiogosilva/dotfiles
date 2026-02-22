@@ -1,0 +1,21 @@
+inherits = "aura-dark"
+
+# Transparent backgrounds
+"ui.background" = { fg = "white" }
+"ui.statusline" = { fg = "accent10", bg = "accent24" }
+
+# Remove full-width cursorline background
+"ui.cursorline.primary" = {}
+
+# File picker / menu selection highlight
+"ui.text.focus" = { fg = "orange", bg = "purple_selection_solid" }
+"ui.menu.selected" = { fg = "orange", bg = "purple_selection_solid" }
+"ui.menu.scroll" = { fg = "gray" }
+
+# Mode-aware cursor colors
+"ui.cursor.primary.normal" = { bg = "pink", fg = "black" }
+"ui.cursor.primary.insert" = { bg = "green", fg = "black" }
+"ui.cursor.primary.select" = { bg = "purple", fg = "black" }
+
+# Git inline blame
+"ui.virtual.inline-blame" = { fg = "gray", modifiers = ["italic"] }

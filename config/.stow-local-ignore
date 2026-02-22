@@ -1,0 +1,26 @@
+# Prevent stowing caches/state if they exist inside the repo (common if ~/.config
+# was previously symlinked to this dotfiles checkout).
+\.config/cache
+\.config/claude
+\.config/colima
+\.config/local
+\.config/raycast
+\.config/btop
+\.config/opencode
+\.config/zed
+
+\.config/pgcli/history$
+\.config/pgcli/log$
+\.config/lazygit/state\.yml$
+\.config/gh/hosts\.yml$
+
+\.config/\.copilot
+\.config/github-copilot
+\.config/cagent
+
+\.config/opencode/node_modules
+\.config/helix/runtime$
+\.config/helix/\.helix
+\.config/helix/\.claude
+
+\.DS_Store

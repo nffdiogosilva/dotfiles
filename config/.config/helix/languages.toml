@@ -1,0 +1,35 @@
+[language-server.pyrefly]
+command = "pyrefly"
+args = ["lsp"]
+
+[language-server.ty]
+command = "ty"
+args = ["server"]
+
+[language-server.copilot]
+command = "copilot-language-server"
+args = ["--stdio"]
+
+[language-server.copilot.config]
+editorInfo = { name = "helix", version = "25.07.1" }
+editorPluginInfo = { name = "helix-copilot", version = "0.1.0" }
+
+[[language]]
+name = "python"
+language-servers = ["ty", "copilot"]
+
+[[language]]
+name = "rust"
+language-servers = ["rust-analyzer", "copilot"]
+
+[[language]]
+name = "typescript"
+language-servers = ["typescript-language-server", "copilot"]
+
+[[language]]
+name = "javascript"
+language-servers = ["typescript-language-server", "copilot"]
+
+[[language]]
+name = "go"
+language-servers = ["gopls", "copilot"]
