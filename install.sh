@@ -79,11 +79,20 @@ if [ ! -d "$HELIX_SRC" ]; then
   mkdir -p "$HOME/src"
   git clone https://github.com/nffdiogosilva/helix.git "$HELIX_SRC"
 fi
-info "Building Helix from source…"
 cd "$HELIX_SRC"
 git pull --rebase
-cargo install --path helix-term --locked
-ln -sf "$HELIX_SRC/runtime" "$HOME/.config/helix/runtime"
+REPO_COMMIT="$(git rev-parse --short HEAD)"
+if command -v hx &>/dev/null; then
+  INSTALLED_COMMIT="$(hx --version | awk '{print $3}' | tr -d '()')"
+fi
+if [ "${INSTALLED_COMMIT:-}" = "$REPO_COMMIT" ]; then
+  info "Helix already at $REPO_COMMIT, skipping build"
+else
+  info "Building Helix from source ($REPO_COMMIT)…"
+  cargo install --path helix-term --locked
+fi
+mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/helix"
+ln -sf "$HELIX_SRC/runtime" "${XDG_CONFIG_HOME:-$HOME/.config}/helix/runtime"
 ok "Helix (from fork)"
 
 # ── Clone dotfiles ───────────────────────────────────────────────────────────
@@ -103,7 +112,7 @@ ok "Dotfiles repo"
 # ── Stow ─────────────────────────────────────────────────────────────────────
 info "Symlinking dotfiles with stow…"
 cd "$DOTFILES"
-stow .
+stow home config zsh local
 ok "Stow"
 
 # ── TPM (Tmux Plugin Manager) ───────────────────────────────────────────────
@@ -129,4 +138,4 @@ ok "Default shell"
 # ── Done ─────────────────────────────────────────────────────────────────────
 echo ""
 ok "All done! Open a new terminal to start using your dotfiles."
-echo "   Don't forget to create zsh/secrets.zsh for your API keys."
+echo "   Don't forget to create ~/.config/zsh/secrets.zsh for your API keys."
