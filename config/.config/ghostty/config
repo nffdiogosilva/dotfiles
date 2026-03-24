@@ -10,6 +10,9 @@ confirm-close-surface = false
 working-directory = /Users/ichigo/Developer
 command = /opt/homebrew/bin/tmux new-session -A -s default
 
+# Ensure Option+Shift+N is forwarded as Meta+Shift+N to tmux
+keybind = alt+shift+n=esc:N
+
 # keybind = ctrl+alt+h=goto_split:left
 # keybind = ctrl+alt+j=goto_split:bottom
 # keybind = ctrl+alt+k=goto_split:top

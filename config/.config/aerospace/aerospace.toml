@@ -29,7 +29,7 @@ PATH = '/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin'
 [mode.main.binding]
 ctrl-enter = 'exec-and-forget usr/bin/open /Applications/Ghostty.app'
 cmd-h = []
-ctrl-cmd-d = 'fullscreen'
+ctrl-cmd-f = 'fullscreen'
 ctrl-cmd-space = 'layout horizontal vertical'
 
 ctrl-cmd-h = 'focus left'

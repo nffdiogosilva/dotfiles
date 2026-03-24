@@ -34,7 +34,7 @@
       ]
     },
     "figma-dev-mode-mcp-server": {
-      "url": "http://127.0.0.1:3845/sse"
+      "url": "http://127.0.0.1:3845/mcp"
     }
   },
   // "amp.experimental.modes": [
@@ -48,5 +48,6 @@
     }
   ],
   "amp.dangerouslyAllowAll": true,
-  "amp.terminal.theme": "readable-diff"
+  "amp.terminal.theme": "readable-diff",
+  "amp.agent.deepReasoningEffort": "xhigh"
 }
