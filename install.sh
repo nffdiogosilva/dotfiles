@@ -77,7 +77,7 @@ HELIX_SRC="$HOME/Developer/oss/helix"
 if [ ! -d "$HELIX_SRC" ]; then
   info "Cloning Helix fork…"
   mkdir -p "$HOME/src"
-  git clone https://github.com/nffdiogosilva/helix.git "$HELIX_SRC"
+  git clone git@github.com:nffdiogosilva/helix.git "$HELIX_SRC"
 fi
 cd "$HELIX_SRC"
 git pull --rebase
@@ -98,7 +98,7 @@ ok "Helix (from fork)"
 # ── Clone dotfiles ───────────────────────────────────────────────────────────
 if [ ! -d "$DOTFILES" ]; then
   info "Cloning dotfiles…"
-  git clone https://github.com/nffdiogosilva/dotfiles.git "$DOTFILES"
+  git clone git@github.com:nffdiogosilva/dotfiles.git "$DOTFILES"
   cd "$DOTFILES"
   git submodule update --init --recursive
 else
