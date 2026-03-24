@@ -72,6 +72,11 @@ if ! command -v rustup &>/dev/null; then
 fi
 ok "Rust"
 
+# ── Git: use SSH for all GitHub HTTPS URLs ──────────────────────
+# Needed so cargo/helix grammar fetches don't prompt for credentials
+git config --global url."git@github.com:".insteadOf "https://github.com/"
+ok "Git SSH URL rewrite"
+
 # ── Helix (built from fork) ─────────────────────────────────────────────────
 HELIX_SRC="$HOME/Developer/oss/helix"
 if [ ! -d "$HELIX_SRC" ]; then
