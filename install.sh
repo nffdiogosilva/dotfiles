@@ -126,6 +126,13 @@ if ! command -v claude &>/dev/null; then
 fi
 ok "Claude Code"
 
+# ── Amp (official installer) ─────────────────────────────────────────────────
+if ! command -v amp &>/dev/null; then
+  info "Installing Amp via official script…"
+  curl -fsSL https://ampcode.com/install.sh | bash
+fi
+ok "Amp"
+
 # ── GitHub auth (mandatory — provisions SSH key on GitHub) ──────────────────
 # Must run *before* the SSH URL rewrite below, otherwise HTTPS fallbacks break
 # on a fresh machine that has no key on GitHub yet.
