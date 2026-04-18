@@ -175,6 +175,13 @@ fi
 ok "Dotfiles repo"
 
 # ── Stow ─────────────────────────────────────────────────────────────────────
+# `gh auth login` above wrote a default ~/.config/gh/config.yml which blocks
+# stow from symlinking the tracked one. If it's a real file (not already our
+# stow symlink), remove it so stow can take over.
+if [ -f "$HOME/.config/gh/config.yml" ] && ! [ -L "$HOME/.config/gh/config.yml" ]; then
+  rm "$HOME/.config/gh/config.yml"
+fi
+
 info "Symlinking dotfiles with stow…"
 cd "$DOTFILES"
 stow home config zsh local
