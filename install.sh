@@ -211,7 +211,10 @@ if [ ! -d "$TPM_DIR" ]; then
   info "Installing TPM…"
   git clone https://github.com/tmux-plugins/tpm "$TPM_DIR"
 fi
-ok "TPM"
+# Install the plugins declared in .tmux.conf without needing a running tmux
+info "Installing tmux plugins via TPM…"
+"$TPM_DIR/bin/install_plugins" >/dev/null
+ok "TPM + plugins"
 
 # ── Set default shell to Homebrew zsh ────────────────────────────────────────
 BREW_ZSH="$(brew --prefix)/bin/zsh"
