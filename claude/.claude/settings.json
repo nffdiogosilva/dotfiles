@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
+  "model": "opus[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "bash /Users/ichigo/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "github@claude-plugins-official": true,
+    "chat-timestamps@saskia-plugins": true,
+    "playwright@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "saskia-plugins": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/ichigo/.claude/plugins/chat-timestamps"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true
+}

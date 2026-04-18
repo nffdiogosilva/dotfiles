@@ -1,0 +1,1 @@
+Find the most recent screenshot on the Desktop and read it. Use bash to find the latest file matching the screenshot pattern (e.g., "Screenshot*.png") in ~/Desktop, then use the Read tool to view it. Do not describe the screenshot — just confirm you've seen it and wait for the user's next message.

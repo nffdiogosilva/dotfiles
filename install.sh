@@ -32,78 +32,131 @@ fi
 ok "Homebrew"
 
 # ── Brew formulae ────────────────────────────────────────────────────────────
-FORMULAE=(
+# Core CLI utilities
+CORE_FORMULAE=(
   stow
   starship
-  lazygit
-  yazi
+  tmux
   gh
-  pgcli
-  btop
   jq
   ripgrep
   fd
   fzf
   zoxide
-  tmux
+  eza
+  tree
   glow
+  btop
+  yazi
+  lazygit
+)
+
+# Development tools
+DEV_FORMULAE=(
+  neovim
+  just
+  lefthook
+  tree-sitter-cli
+  uv
+  pgcli
   docker
 )
 
-CASKS=(
+# Cloud / Kubernetes tooling
+CLOUD_FORMULAE=(
+  awscli
+  azure-cli
+  kubernetes-cli
+  helm
+  kustomize
+  argocd
+)
+
+# ── Brew casks ───────────────────────────────────────────────────────────────
+# Terminals / window management
+TERMINAL_CASKS=(
   ghostty
+  warp
   nikitabobko/tap/aerospace
-  raycast
+)
+
+# Security / networking
+SECURITY_CASKS=(
+  bitwarden
+  cloudflare-warp
+  tailscale-app
+)
+
+# Daily apps
+DAILY_CASKS=(
+  google-chrome
+  slack
+  microsoft-teams
+  whatsapp
+  notion
+  notion-calendar
+)
+
+# AI tools (Claude Code CLI is installed separately via official script)
+AI_CASKS=(
+  claude
+  codex
+  codex-app
 )
 
 info "Installing Homebrew formulae…"
-brew install "${FORMULAE[@]}"
+brew install \
+  "${CORE_FORMULAE[@]}" \
+  "${DEV_FORMULAE[@]}" \
+  "${CLOUD_FORMULAE[@]}"
 ok "Formulae"
 
 info "Installing Homebrew casks…"
-brew install --cask "${CASKS[@]}" 2>/dev/null || true
+brew install --cask \
+  "${TERMINAL_CASKS[@]}" \
+  "${SECURITY_CASKS[@]}" \
+  "${DAILY_CASKS[@]}" \
+  "${AI_CASKS[@]}" 2>/dev/null || true
 ok "Casks"
 
-# ── Rust (for cargo-based tools if needed) ───────────────────────────────────
-if ! command -v rustup &>/dev/null; then
-  info "Installing Rust…"
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-  source "$HOME/.cargo/env"
+# ── Claude Code (official installer) ─────────────────────────────────────────
+if ! command -v claude &>/dev/null; then
+  info "Installing Claude Code via official script…"
+  curl -fsSL https://claude.ai/install.sh | bash
 fi
-ok "Rust"
+ok "Claude Code"
+
+# ── GitHub auth (mandatory — provisions SSH key on GitHub) ──────────────────
+# Must run *before* the SSH URL rewrite below, otherwise HTTPS fallbacks break
+# on a fresh machine that has no key on GitHub yet.
+# `gh auth login --git-protocol ssh --web` will:
+#   1. generate ~/.ssh/id_ed25519 if missing
+#   2. open a browser for OAuth
+#   3. upload the public key to GitHub
+if ! gh auth status &>/dev/null; then
+  info "Authenticating with GitHub (browser will open; gh will upload an SSH key)…"
+  gh auth login --git-protocol ssh --web
+fi
+gh auth status &>/dev/null || fail "gh auth login did not complete — rerun the script after authenticating"
+ok "GitHub auth"
+
+# Pre-accept github.com host key so the first SSH clone doesn't prompt
+mkdir -p "$HOME/.ssh" && chmod 700 "$HOME/.ssh"
+if ! grep -q "^github.com " "$HOME/.ssh/known_hosts" 2>/dev/null; then
+  ssh-keyscan -t rsa,ecdsa,ed25519 github.com 2>/dev/null >> "$HOME/.ssh/known_hosts"
+fi
+ok "SSH known_hosts"
 
 # ── Git: use SSH for all GitHub HTTPS URLs ──────────────────────
-# Needed so cargo/helix grammar fetches don't prompt for credentials
+# Safe now that gh has provisioned an SSH key above.
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 ok "Git SSH URL rewrite"
-
-# ── Helix (built from fork) ─────────────────────────────────────────────────
-HELIX_SRC="$HOME/Developer/oss/helix"
-if [ ! -d "$HELIX_SRC" ]; then
-  info "Cloning Helix fork…"
-  mkdir -p "$HOME/src"
-  git clone git@github.com:nffdiogosilva/helix.git "$HELIX_SRC"
-fi
-cd "$HELIX_SRC"
-git pull --rebase
-REPO_COMMIT="$(git rev-parse --short HEAD)"
-if command -v hx &>/dev/null; then
-  INSTALLED_COMMIT="$(hx --version | awk '{print $3}' | tr -d '()')"
-fi
-if [ "${INSTALLED_COMMIT:-}" = "$REPO_COMMIT" ]; then
-  info "Helix already at $REPO_COMMIT, skipping build"
-else
-  info "Building Helix from source ($REPO_COMMIT)…"
-  cargo install --path helix-term --locked
-fi
-mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/helix"
-ln -sf "$HELIX_SRC/runtime" "${XDG_CONFIG_HOME:-$HOME/.config}/helix/runtime"
-ok "Helix (from fork)"
 
 # ── Clone dotfiles ───────────────────────────────────────────────────────────
 if [ ! -d "$DOTFILES" ]; then
   info "Cloning dotfiles…"
-  git clone git@github.com:nffdiogosilva/dotfiles.git "$DOTFILES"
+  # HTTPS URL here gets rewritten to SSH by the git config set above
+  git clone https://github.com/nffdiogosilva/dotfiles.git "$DOTFILES"
   cd "$DOTFILES"
   git submodule update --init --recursive
 else
@@ -118,6 +171,10 @@ ok "Dotfiles repo"
 info "Symlinking dotfiles with stow…"
 cd "$DOTFILES"
 stow home config zsh local
+# --no-folding so stow symlinks individual files inside ~/.claude,
+# not the whole directory (Claude writes session state there at runtime)
+mkdir -p "$HOME/.claude"
+stow --no-folding claude
 ok "Stow"
 
 # ── TPM (Tmux Plugin Manager) ───────────────────────────────────────────────

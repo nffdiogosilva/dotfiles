@@ -14,6 +14,7 @@ zsh/.zsh_sessions/
 # Shell secrets (never commit)
 # =============================================================================
 zsh/secrets.zsh
+**/secrets.zsh
 
 # =============================================================================
 # XDG cache & local data
@@ -24,6 +25,7 @@ zsh/secrets.zsh
 # =============================================================================
 # Tool state & caches (auto-generated, machine-specific)
 # =============================================================================
+**/.config/gh/
 **/.config/btop/
 **/.config/claude/
 **/.config/.copilot/
@@ -44,3 +46,34 @@ zsh/secrets.zsh
 **/.config/helix/.claude/
 **/.config/helix/.helix/
 **/.config/zed/
+
+# =============================================================================
+# Claude Code — runtime state & secrets (never commit)
+# =============================================================================
+# Whitelist under the `claude/` stow package: ignore everything, then re-include
+# only the curated files.
+claude/.claude/*
+!claude/.claude/settings.json
+!claude/.claude/statusline-command.sh
+!claude/.claude/commands/
+claude/.claude/commands/*
+!claude/.claude/commands/*.md
+
+# Belt-and-suspenders: refuse obvious secret/state paths anywhere in the repo
+**/.claude.json
+**/.claude/.credentials.json
+**/.claude/history.jsonl
+**/.claude/sessions/
+**/.claude/projects/
+**/.claude/plans/
+**/.claude/tasks/
+**/.claude/paste-cache/
+**/.claude/file-history/
+**/.claude/session-env/
+**/.claude/shell-snapshots/
+**/.claude/telemetry/
+**/.claude/backups/
+**/.claude/cache/
+**/.claude/downloads/
+**/.claude/plugins/
+**/.claude/policy-limits.json
