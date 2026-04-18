@@ -185,9 +185,23 @@ fi
 info "Symlinking dotfiles with stow…"
 cd "$DOTFILES"
 stow home config zsh local
+
+# Claude Code's installer pre-creates some files under ~/.claude/ that collide
+# with the ones we symlink via the `claude` stow package. Remove any real
+# (non-symlink) copies of the files we manage so stow can take over.
+mkdir -p "$HOME/.claude/commands"
+for f in \
+  "$HOME/.claude/settings.json" \
+  "$HOME/.claude/statusline-command.sh" \
+  "$HOME/.claude/commands/open-pr.md" \
+  "$HOME/.claude/commands/screenshot.md"
+do
+  if [ -f "$f" ] && ! [ -L "$f" ]; then
+    rm "$f"
+  fi
+done
 # --no-folding so stow symlinks individual files inside ~/.claude,
 # not the whole directory (Claude writes session state there at runtime)
-mkdir -p "$HOME/.claude"
 stow --no-folding claude
 ok "Stow"
 
